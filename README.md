@@ -27,6 +27,22 @@ Face à ce genre de problème, nous avons pensé à réaliser une application we
 
 Voici la planification :
 
+Tâche principale : Réalisation de l'API ( 4 semaines )
+
+* Réalisation de la base de données - MongoDB - et structure de données ( 1 semaine )
+* Création des requêtes sur l'API : Ajout d'événement, Modification d'événement, Affichage événement, Suppresssion événement ( 2 semaines )
+* Sécurisation de l'API et connexion avec la base de données ( suivi de la gestion des modèles ) ( 1 semaine )
+
+Réalisation du site internet ( 4 semaines ) 
+
+*  Création de la page d'authentification sécurisé et de connexion ( 1 semaine )
+*  Création de la page d'affichage de l'ensemble des tâches ( 1.5 semaine )
+*  Création de la page d'ajout de tâches ( 0.5 semaine )
+*  Création de la page des statistiques ( 1 semaine )
+
+Si possible l'ajout des fonctionnalitées suivantes : 
+* Création de categories pour les tâches
+* Possibilité d'associer une tâche à une catégorie créé
 
 
 ### Prototype
