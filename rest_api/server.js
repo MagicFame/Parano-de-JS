@@ -11,7 +11,7 @@ var User = require('./api/models/userModel')
 var Task = require('./api/models/taskPlannerModel')
 
 // Connection to the MongoDB
-mongoose.connect('mongodb://localhost/mydb')
+mongoose.connect('mongodb://localhost/mydb', { useNewUrlParser: true, useUnifiedTopology: true })
 
 // Initialization of the body Parser
 app.use(bodyParser.urlencoded({ extended: true }))

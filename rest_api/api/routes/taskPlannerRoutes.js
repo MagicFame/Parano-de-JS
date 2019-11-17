@@ -4,7 +4,7 @@ module.exports = function (app) {
   var taskPlanner = require('../controllers/taskPlannerController')
 
   // todoList Routes
-/*  app.route('/tasks')
+  /*  app.route('/tasks')
     .get(taskPlanner.list_all_tasks)
     .post(taskPlanner.create_a_task)
 
@@ -12,9 +12,8 @@ module.exports = function (app) {
     .get(taskPlanner.read_a_task)
     .put(taskPlanner.update_a_task)
     .delete(taskPlanner.delete_a_task)
-*/
+  */
   app.route('/users')
     .get(taskPlanner.get_users)
     .post(taskPlanner.create_user)
-
 }
