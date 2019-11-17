@@ -1,38 +1,49 @@
 'use strict'
 
-var mongoose = require('mongoose')
+const mongoose = require('mongoose')
 var Task = require('../models/taskPlannerModel')
+var User = require('../models/userModel')
 
 exports.list_all_tasks = function (req, res) {
-  Task.find({}, function(err, task) {
-    if (err)
-      res.send(err);
-    res.json(task);
-  });
-};
-
-exports.create_a_task = function(req, res) {
-  var new_task = new Task(req.body);
-  new_task.save(function(err, task) {
-    if (err)
-      res.send(err);
-    res.json(task);
-  });
-};
-
-
-exports.read_a_task = function(req, res) {
-  Task.findById(req.params.taskId, function(err, task) {
-    if (err)
-      res.send(err);
-    res.json(task);
+  Task.find({}, function (err, task) {
+    if (err) res.send(err)
+    res.json(task)
   })
 }
 
-exports.update_a_task = function(req, res) {
+exports.get_users = function (req, res) {
+  User.find({}, function (err, user) {
+    if (err) res.send(err)
+    res.json(user)
+  })
+}
+
+exports.create_user = function (req, res) {
+  var newuser = new User(req.body)
+  newuser.save(function (err, user) {
+    if (err) res.send(err)
+    res.json(user)
+  })
+}
+
+/* exports.create_a_task = function(req, res) {
+  var new_task = new Task(req.body);
+  new_task.save(function(err, task) {
+    if (err) res.send(err)
+    res.json(task)
+  })
+}
+
+exports.read_a_task = function (req, res) {
+  Task.findById(req.params.taskId, function (err, task) {
+    if (err) res.send(err)
+    res.json(task)
+  })
+}
+
+exports.update_a_task = function (req, res) {
   Task.findOneAndUpdate({_id: req.params.taskId}, req.body, {new: true}, function(err, task) {
-    if (err)
-      res.send(err)
+    if (err) res.send(err)
     res.json(task)
   })
 }
@@ -45,4 +56,4 @@ Task.remove({
       res.send(err)
     res.json({ message: 'Task successfully deleted' })
   })
-}
+} */
