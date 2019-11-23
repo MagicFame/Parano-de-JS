@@ -4,7 +4,7 @@ const app = express()
 const bodyParser = require('body-parser')
 
 // Define the port
-const port = 3000
+const port = 8124
 
 // Initialization of models
 var User = require('./api/models/userModel')
@@ -22,7 +22,7 @@ var routes = require('./api/routes/taskPlannerRoutes')
 routes(app)
 
 // Listen on port
-app.listen(3000, function () {
+app.listen(port, function () {
   console.log('Serveur started on the port : ' + port)
 })
 
