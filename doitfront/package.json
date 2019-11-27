@@ -16,6 +16,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "standard": {
+    "env": ["mocha"]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
