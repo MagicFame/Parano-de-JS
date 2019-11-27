@@ -16,5 +16,4 @@ module.exports = function (app) {
   app.route('/users')
     .get(taskPlanner.get_users)
     .post(taskPlanner.create_user)
-
 }
