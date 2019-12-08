@@ -5,6 +5,7 @@ import App from './App'
 import * as serviceWorker from './serviceWorker'
 import NotFound from './components/NotFound'
 import Connexion from './components/Connexion'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import {
   BrowserRouter as Router,
