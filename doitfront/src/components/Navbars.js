@@ -1,10 +1,10 @@
 import React from 'react'
 import './Navbar.css'
 
-const Navbar = ({ changeContent }) => {
+const Navbars = ({ changeContent }) => {
   return (
     <nav className='navbar navbar-expand-md navbar-dark bg-dark fixed-left'>
-      <img src={require('../images/logo.jpg')} class='img-fluid' alt='Resposive logo' />
+      <img src={require('../images/logo.jpg')} className='img-fluid' alt='Resposive logo' />
       <div className='collapse navbar-collapse' id='navbarsExampleDefault'>
         <ul className='navbar-nav'>
           <li className='nav-item'>
@@ -25,4 +25,4 @@ const Navbar = ({ changeContent }) => {
   )
 }
 
-export default Navbar
+export default Navbars

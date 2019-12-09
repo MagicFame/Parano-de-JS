@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import './App.css'
-import Navbar from './components/Navbar'
+import Navbars from './components/Navbars'
 import Dashboard from './components/Dashboard'
 import Profil from './components/Profil'
 
@@ -32,8 +32,8 @@ class App extends Component {
     }    
 
     return (
-      <div className='container'>
-        <Navbar changeContent={this.changeContent}/>
+      <div className=''>
+        <Navbars changeContent={this.changeContent}/>
         {this.contentDisplayed()}
       </div>
     )
