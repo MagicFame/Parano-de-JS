@@ -11,14 +11,20 @@ module.exports = function (app) {
     .put(taskPlanner.update_a_task)
     .delete(taskPlanner.delete_a_task)
   */
-  app.route('/users')
+  app.route('api/users')
     .get(userController.get_all_users)
     .post(userController.create_user)
 
-  app.route('/user/:id')
+  app.route('api/user/remove/:id')
+    .delete(userController.delete_user_by_id)
+
+  app.route('api/user/id/:id')
     .get(userController.get_user_by_id)
 
-  app.route('/tasks')
+  app.route('api/user/name/:username')
+    .get(userController.get_user_by_username)
+
+  app.route('api/tasks')
     .get(taskController.get_all_tasks)
     .post(taskController.create_task)
 }
