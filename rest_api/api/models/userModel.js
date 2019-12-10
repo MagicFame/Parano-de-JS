@@ -7,14 +7,13 @@ var Schema = mongoose.Schema
 */
 
 var UserSchema = new Schema({
-  username: { type: String, required: true },
-  firstname: { type: String, required: true },
-  lastname: { type: String, required: true },
-  birthdate: { type: Date, required: true },
+  username: { type: String, required: 'Please enter a valid username' },
+  firstname: { type: String, required: 'Please enter a valid firstname' },
+  lastname: { type: String, required: 'Please enter a valid lastname' },
+  birthdate: { type: Date, required: false },
   phone: { type: String, required: false },
-  mail: { type: String, required: true },
-  password: { type: String, required: true }
+  mail: { type: String, required: 'Please enter a valid email address' },
+  password: { type: String, required: 'Please enter a valid username' }
 })
 
 module.exports = mongoose.model('User', UserSchema)
-
