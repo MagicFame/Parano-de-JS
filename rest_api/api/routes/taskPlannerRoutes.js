@@ -1,30 +1,19 @@
-'use strict'
+const taskController = require('../controllers/taskController')
+const userController = require('../controllers/userController')
+const connectionController = require('../controllers/connectionController')
+const express = require('express')
+const router = express.Router()
 
-module.exports = function (app) {
-  var taskController = require('../controllers/taskController')
-  var userController = require('../controllers/userController')
+router.post('/users', userController.create_user)
+router.get('/users', userController.get_all_users)
+router.delete('/user/remove/:id', userController.delete_user_by_id)
+router.get('/user/id/:id', userController.get_user_by_id)
+router.get('/user/name/:username', userController.get_user_by_username)
 
-  // todoList Routes
-  /*
-  app.route('/tasks/:taskId')
-    .get(taskPlanner.read_a_task)
-    .put(taskPlanner.update_a_task)
-    .delete(taskPlanner.delete_a_task)
-  */
-  app.route('api/users')
-    .get(userController.get_all_users)
-    .post(userController.create_user)
+router.get('/tasks', taskController.get_all_tasks)
+router.post('/tasks', taskController.create_task)
 
-  app.route('api/user/remove/:id')
-    .delete(userController.delete_user_by_id)
+router.post('/authenticate', connectionController.authenticate)
+router.post('/register', userController.create_user)
 
-  app.route('api/user/id/:id')
-    .get(userController.get_user_by_id)
-
-  app.route('api/user/name/:username')
-    .get(userController.get_user_by_username)
-
-  app.route('api/tasks')
-    .get(taskController.get_all_tasks)
-    .post(taskController.create_task)
-}
+module.exports = router

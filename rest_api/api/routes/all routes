@@ -1,0 +1,47 @@
+  
+  // users
+  api/users 
+	api/user
+  api/user/remove/:id
+  api/user/id/:id
+  api/user/name/:username
+
+  // tasks
+  api/tasks
+	api/task
+
+	// connection
+	api/authentication
+	api/authentication/register
+
+
+
+
+
+  json file for filling the db :
+  user :
+  {
+	"username": "morgan",
+	"firstname": "morgan",
+	"lastname": "wolf",
+	"birthdate": "2019-11-12T22:00:00.000Z",
+	"phone": "0000000000",
+	"mail": "ok@ok.fr",
+	"password": "okok"
+  }
+
+  task :
+  {
+	"title": "my first task",
+	"content": "a description",
+	"comment": "a comment",
+	"startState": "10-12-2019",
+	"endState": "10-12-2019",
+	"participants": "",
+	"creator": "the creator username",
+	"location": "",
+	"relevance": "",
+    "type": ""
+  }
+
+
