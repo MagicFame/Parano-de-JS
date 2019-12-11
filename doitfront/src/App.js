@@ -7,7 +7,7 @@ import Profil from './components/Profil'
 
 class App extends Component {
   state = {
-    uid : this.props.location.state !== undefined ? this.props.location.state.uid : '',
+    id : this.props.location.state.id !== undefined ? this.props.location.state.id : '',
     pseudo : 'Jérémie',
     printedContent : 1
   }
@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   render () {
-    if (this.props.location.state === undefined) {
+    if (this.props.location.state.id === undefined) {
       return <Redirect push to='/' />
     }    
 
