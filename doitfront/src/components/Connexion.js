@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Redirect } from 'react-router-dom'
 import Notiflix from 'notiflix-react'
 import './Connexion.css'
+import Login from './Login'
+import Register from './Register'
 
 class Connexion extends Component {
   constructor(props){
@@ -12,7 +14,8 @@ class Connexion extends Component {
       username : '',
       password: '',
       token: '',
-      id: ''
+      id: '',
+      affichage: 1
     }
   }
 
@@ -61,32 +64,30 @@ class Connexion extends Component {
     this.setState({password})
   }
 
+  handleClick = affichage => {
+    this.setState({affichage})
+  }
+
+  affichage = () => {
+    if (this.state.affichage === 1) {
+      return <Login handleSubmit={this.handleSubmit} handleChangeUsername={this.handleChangeUsername} handleClick={this.handleClick}handleChangePassword={this.handleChangePassword} />
+    } else if (this.state.affichage === 2) {
+      return <Register handleClick={this.handleClick} />
+    }
+  }
+
   render () {
     if (this.state.connected) {
       return <Redirect push to={{ pathname: `/home`, state: {token: this.state.token, id: this.state.id} }} />
     }
-
+    
     return (
       <div className='container vertical-align'>
         <div className='row'>
           <div className='col-md-6 col-sm-12'>
             <img src={require('../images/bg-01.jpg')} className='img-fluid' alt='fond' />
           </div>
-          <div className='col-6'>
-            <h2>Account Login</h2>
-            <form onSubmit={this.handleSubmit}>
-              <div className='form-group'>
-                <label htmlFor='email'>Username</label>
-                <input type='text' placeholder='Username' id='email' className='form-control' onChange={this.handleChangeUsername} required />
-              </div>
-              <div className='form-group'>
-                <label htmlFor='password'>Password</label>
-                <input type='password' className='form-control' id='pwd' placeholder='Password' onChange={this.handleChangePassword} required />
-              </div>
-              <button type='submit' className='btn btn-success'>Sign in</button>
-            </form>
-            <p>No account yet ? <a href='/'>Register</a></p>
-          </div>
+          {this.affichage()}
         </div>
       </div>
     )
