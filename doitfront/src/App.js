@@ -8,10 +8,23 @@ import Profil from './components/Profil'
 class App extends Component {
   state = {
     id : this.props.location.state.id !== undefined ? this.props.location.state.id : '',
-    pseudo : 'Jérémie',
-    printedContent : 1
+    username : '',
+    printedContent : 1,
+    token: this.props.location.state.token
   }
-  componentDidMount () {
+
+  async componentDidMount () {
+    await fetch(`http://localhost:8124/api/users/user/id/${this.state.id}`, {
+      method: 'GET',
+      headers: {
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json;charset=UTF-8'
+      }
+    }).then(async answer => {
+      const responseParse = await answer.json()
+      let username = responseParse.username
+      this.setState({username})
+    })
   }
 
   changeContent = mode => {
@@ -21,7 +34,7 @@ class App extends Component {
 
   contentDisplayed = () => {
     if (this.state.printedContent === 1) {
-       return <Dashboard pseudo={this.state.pseudo}/>
+       return <Dashboard pseudo={this.state.username}/>
     }
     else if (this.state.printedContent === 2) return <Profil />
   }

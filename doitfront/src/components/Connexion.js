@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Redirect } from 'react-router-dom'
 import Notiflix from 'notiflix-react'
+import './Connexion.css'
 
 class Connexion extends Component {
   constructor(props){
@@ -36,7 +37,6 @@ class Connexion extends Component {
     })
     .then(async (data) => {
       objectResponse = await data.json()
-      console.log(objectResponse)
     })
 
 
@@ -67,7 +67,7 @@ class Connexion extends Component {
     }
 
     return (
-      <div className='container'>
+      <div className='container vertical-align'>
         <div className='row'>
           <div className='col-md-6 col-sm-12'>
             <img src={require('../images/bg-01.jpg')} className='img-fluid' alt='fond' />
