@@ -2,8 +2,7 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 
 const Tables = ({ tasks }) => {
-
-  let data = Object.keys(tasks).map(key => {
+  const data = Object.keys(tasks).map(key => {
     return (
       <tr key={key}>
         <td>{tasks[key].title}</td>
