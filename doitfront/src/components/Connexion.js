@@ -50,7 +50,7 @@ class Connexion extends Component {
         id: objectResponse.data.user._id
       })
     } else { // Else 
-      Notiflix.Report.Failure( 'An error occured', 'Bad combination email password', 'Click' ); 
+      Notiflix.Report.Failure( 'An error occured', 'Bad combination email password', 'Click' )
     }
   }
 

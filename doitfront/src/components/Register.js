@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Notiflix from 'notiflix-react'
+import { Redirect } from 'react-router-dom'
 
 class Register extends Component {
 
@@ -10,6 +12,10 @@ class Register extends Component {
     phone: '',
     email: '',
     password: ''
+  }
+
+  componentDidMount () { 
+    Notiflix.Report.Init({});
   }
 
   // Appel API de création de compte
@@ -32,8 +38,15 @@ class Register extends Component {
       })
     })
     .then(async (data) => {
-      await console.log(data.json())
-      // TO DO : Traiter la réponse, le cas d'erreur et la redirection (message user)
+      let objectParsed = await (data.json())
+      if(objectParsed.errmsg !== undefined){
+        Notiflix.Report.Failure( 'An error occured', objectParsed.errmsg , 'Click' )
+      } else if(objectParsed._id !== undefined){
+        Notiflix.Report.Success('Account created','You can use the login form','Thanks');
+        this.props.handleClick(1)
+      } else {
+        Notiflix.Report.Failure( 'An error occured', 'Please try again' , 'Click' )
+      }
     })
   }
 
@@ -69,47 +82,51 @@ class Register extends Component {
 
 
   render () {
-    return (
-      <div className='col-6'>
-        <h2>New account</h2>
-        <form onSubmit={this.handleSubmit}>
-          <div className='form-group'>
-            <label htmlFor='username'>Username</label>
-            <input type='text' placeholder='Username' id='username' className='form-control' onChange={this.handleChangeUsername} required />
-          </div>
-          <div className='form-group row'>
-            <div className='col-sm-6'>
-              <label htmlFor='fname'>First Name</label>
-              <input type='text' placeholder='First name' id='fname' className='form-control' onChange={this.handleChangeFirst} required />
+    if (this.state.redirection){
+      return <Redirect push to='/' />
+    } else {
+      return (
+        <div className='col-6'>
+          <h2>New account</h2>
+          <form onSubmit={this.handleSubmit}>
+            <div className='form-group'>
+              <label htmlFor='username'>Username</label>
+              <input type='text' placeholder='Username' id='username' className='form-control' onChange={this.handleChangeUsername} required />
             </div>
-            <div className='col-sm-6'>
-              <label htmlFor='lname'>Last name</label>
-              <input type='text' placeholder='Last name' id='lname' className='form-control' onChange={this.handleChangeLast} required />
+            <div className='form-group row'>
+              <div className='col-sm-6'>
+                <label htmlFor='fname'>First Name</label>
+                <input type='text' placeholder='First name' id='fname' className='form-control' onChange={this.handleChangeFirst} required />
+              </div>
+              <div className='col-sm-6'>
+                <label htmlFor='lname'>Last name</label>
+                <input type='text' placeholder='Last name' id='lname' className='form-control' onChange={this.handleChangeLast} required />
+              </div>
             </div>
-          </div>
-          <div className='form-group row'>
-            <div className='col-sm-6'>
-              <label htmlFor='birth'>Birthdate</label>
-              <input type='date' id='birth' className='form-control' onChange={this.handleChangeBirth} />
+            <div className='form-group row'>
+              <div className='col-sm-6'>
+                <label htmlFor='birth'>Birthdate</label>
+                <input type='date' id='birth' className='form-control' onChange={this.handleChangeBirth} />
+              </div>
+              <div className='col-sm-6'>
+                <label htmlFor='phone'>Phone</label>
+                <input type='text' placeholder='Phone' id='phone' className='form-control' onChange={this.handleChangePhone} />
+              </div>
             </div>
-            <div className='col-sm-6'>
-              <label htmlFor='phone'>Phone</label>
-              <input type='text' placeholder='Phone' id='phone' className='form-control' onChange={this.handleChangePhone} />
+            <div className='form-group'>
+              <label htmlFor='email'>Email</label>
+              <input type='text' placeholder='Email' id='email' className='form-control' onChange={this.handleChangeEmail} required />
             </div>
-          </div>
-          <div className='form-group'>
-            <label htmlFor='email'>Email</label>
-            <input type='text' placeholder='Email' id='email' className='form-control' onChange={this.handleChangeEmail} required />
-          </div>
-          <div className='form-group'>
-            <label htmlFor='pwd'>Password</label>
-            <input type='password' className='form-control' id='pwd' placeholder='Password' onChange={this.handleChangePassword} required />
-          </div>
-          <button type='submit' className='btn btn-success'>Sign in</button>
-        </form>
-        <p>Got account ? <button type='button' onClick={() => this.props.handleClick(1)} class='btn btn-info'>Login</button></p>
-      </div>
-    )
+            <div className='form-group'>
+              <label htmlFor='pwd'>Password</label>
+              <input type='password' className='form-control' id='pwd' placeholder='Password' onChange={this.handleChangePassword} required />
+            </div>
+            <button type='submit' className='btn btn-success'>Sign in</button>
+          </form>
+          <p>Got account ? <button type='button' onClick={() => this.props.handleClick(1)} class='btn btn-info'>Login</button></p>
+        </div>
+      )
+    }
   }
 }
 
