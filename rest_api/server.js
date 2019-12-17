@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const app = express()
 const bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken')
-
 // Define the port
 const port = 8124
 
@@ -16,6 +15,8 @@ app.set('secretKey', 'nodeRestApi')
 // Initialization of the body Parser
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
+/* app.use(cors()) */
 
 // Initialization of routes
 app.get('/', function (req, res) {
