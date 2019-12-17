@@ -7,10 +7,10 @@ import Profil from './components/Profil'
 
 class App extends Component {
   state = {
-    id: this.props.location.state.id !== undefined ? this.props.location.state.id : '',
+    id: this.props.location.state !== undefined ? this.props.location.state.id : '',
     username: '',
     printedContent: 1,
-    token: this.props.location.state.token
+    token: this.props.location.state !== undefined ? this.props.location.state.token : ''
   }
 
   async componentDidMount () {
@@ -24,6 +24,7 @@ class App extends Component {
       const responseParse = await answer.json()
       const username = responseParse.username
       this.setState({ username })
+      //localStorage.setItem('key', 'value')
     })
   }
 
@@ -39,12 +40,12 @@ class App extends Component {
   }
 
   render () {
-    if (this.props.location.state.id === undefined) {
+    if (this.props.location.state === undefined || this.props.location.state.id === undefined) {
       return <Redirect push to='/' />
     }
 
     return (
-      <div className=''>
+      <div className='wrapper'>
         <Navbars changeContent={this.changeContent} />
         {this.contentDisplayed()}
       </div>
