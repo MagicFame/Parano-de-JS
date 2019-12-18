@@ -20,6 +20,7 @@ class Connexion extends Component {
   }
 
   async componentDidMount () {
+    // Initialization of the library Notiflix
     Notiflix.Report.Init({})
 
     // Check if user is still connected

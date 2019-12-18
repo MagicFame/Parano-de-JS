@@ -14,8 +14,7 @@ class App extends Component {
   }
 
   async componentDidMount () {
-
-   // revérifier les identifiants
+   // Revérifier les identifiants
     if (sessionStorage.getItem('token') !== undefined) {
       let token = sessionStorage.getItem('token')
       await fetch('http://localhost:8124/api/connected/current', {
@@ -34,11 +33,12 @@ class App extends Component {
         }
       })
       // Récupérer les informations sur un utilisateur
-      await fetch(`http://localhost:8124/api/users/user/id/${this.state.id}`, {
+      await fetch(`http://localhost:8124/api/connected/current/info`, {
         method: 'GET',
         headers: {
           Accept: 'application/json',
-          'Content-Type': 'application/json;charset=UTF-8'
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Authorization': 'Bearer ' + token
         }
       }).then(async answer => {
         const responseParse = await answer.json()
@@ -47,9 +47,7 @@ class App extends Component {
       })
     } else {
       this.setState({ id: '' })
-    }
-
-    
+    }    
   }
 
   changeContent = mode => {
