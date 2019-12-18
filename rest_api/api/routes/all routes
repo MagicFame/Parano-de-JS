@@ -1,18 +1,26 @@
   
   // users
-  api/users 
-	api/user
-  api/user/remove/:id
-  api/user/id/:id
-  api/user/name/:username
+  api/users (get all users)
+	api/users/user (post create user)
+  api/user/remove/:id (delete remove user)
+  api/user/id/:id	(get user info)
+  api/user/name/:username (get user info)
 
   // tasks
-  api/tasks
-	api/task
+  api/tasks (get all task)
+	api/task (post create a task)
 
-	// connection
-	api/authentication
-	api/authentication/register
+	// authentication
+	api/authentication/authenticate (post connect a user)
+	api/authentication/register	(post create a new account) --> same as api/users/user
+
+	// connected
+
+	api/connected/current/ (get id from the connected user)
+	api/connected/current/info (get full detail from the connected user)
+
+
+
 
 
 
