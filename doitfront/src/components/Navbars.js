@@ -2,7 +2,7 @@ import React from 'react'
 import './Navbar.css'
 import { Dropdown, DropdownButton } from 'react-bootstrap'
 
-const Navbars = ({ changeContent }) => {
+const Navbars = ({ changeContent, signOut }) => {
   return (
     <nav className='navbar navbar-expand-md navbar-dark bg-dark fixed-left' id='sidebar'>
       <img src={require('../images/logo.jpg')} className='img-fluid' alt='Resposive logo' />
@@ -20,6 +20,9 @@ const Navbars = ({ changeContent }) => {
               <Dropdown.Item as='button'>List existing tasks</Dropdown.Item>
               <Dropdown.Item as='button'>Something else</Dropdown.Item>
             </DropdownButton>
+          </li>
+          <li>
+            <button className='btn btn-danger' id='button' onClick={signOut}>Sign out</button>
           </li>
         </ul>
       </div>

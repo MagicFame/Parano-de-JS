@@ -50,6 +50,11 @@ class App extends Component {
     }    
   }
 
+  signOut = () => {
+    sessionStorage.clear()
+    this.setState({ id : '' })
+  }
+
   changeContent = mode => {
     const printedContent = mode
     this.setState({ printedContent })
@@ -68,7 +73,9 @@ class App extends Component {
 
     return (
       <div className='wrapper'>
-        <Navbars changeContent={this.changeContent} />
+        <Navbars 
+          changeContent={this.changeContent}
+          signOut={this.signOut} />
         {this.contentDisplayed()}
       </div>
     )

@@ -31,7 +31,7 @@ class Dashboard extends Component {
 
   render () {
     return (
-      <div style={{ width: `${window.innerWidth * 0.8}px`, marginLeft: '10%' }}>
+      <div style={{ width: `${window.innerWidth * 0.8}px`, marginLeft: '15%' }}>
         <header><h1>Welcome in the Dashboard {this.props.pseudo} </h1></header>
 
         <Card />
