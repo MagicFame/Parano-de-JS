@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import Card from './Card'
 import Tables from './Tables'
 
 class Dashboard extends Component {
-  state = {
-    tasks: {}
+  constructor (props) {
+    super(props)
+    this.state = {
+      tasks: {}
+    }
   }
 
   componentDidMount () {
@@ -33,8 +35,6 @@ class Dashboard extends Component {
     return (
       <div style={{ width: `${window.innerWidth * 0.8}px`, marginLeft: '15%' }}>
         <header><h1>Welcome in the Dashboard {this.props.pseudo} </h1></header>
-
-        <Card />
         <Tables tasks={this.state.tasks} />
       </div>
     )

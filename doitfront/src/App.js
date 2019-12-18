@@ -4,6 +4,7 @@ import './App.css'
 import Navbars from './components/Navbars'
 import Dashboard from './components/Dashboard'
 import Profil from './components/Profil'
+import AddTask from './components/AddTask'
 
 class App extends Component {
   state = {
@@ -14,15 +15,15 @@ class App extends Component {
   }
 
   async componentDidMount () {
-   // Revérifier les identifiants
+    // Revérifier les identifiants
     if (sessionStorage.getItem('token') !== undefined) {
-      let token = sessionStorage.getItem('token')
+      const token = sessionStorage.getItem('token')
       await fetch('http://localhost:8124/api/connected/current', {
         method: 'GET',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json;charset=UTF-8',
-          'Authorization': 'Bearer ' + token
+          Authorization: 'Bearer ' + token
         }
       }).then(async answer => {
         const answerParsed = await answer.json()
@@ -33,12 +34,12 @@ class App extends Component {
         }
       })
       // Récupérer les informations sur un utilisateur
-      await fetch(`http://localhost:8124/api/connected/current/info`, {
+      await fetch('http://localhost:8124/api/connected/current/info', {
         method: 'GET',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json;charset=UTF-8',
-          'Authorization': 'Bearer ' + token
+          Authorization: 'Bearer ' + token
         }
       }).then(async answer => {
         const responseParse = await answer.json()
@@ -47,12 +48,12 @@ class App extends Component {
       })
     } else {
       this.setState({ id: '' })
-    }    
+    }
   }
 
   signOut = () => {
     sessionStorage.clear()
-    this.setState({ id : '' })
+    this.setState({ id: '' })
   }
 
   changeContent = mode => {
@@ -64,6 +65,7 @@ class App extends Component {
     if (this.state.printedContent === 1) {
       return <Dashboard pseudo={this.state.username} />
     } else if (this.state.printedContent === 2) return <Profil />
+    else if (this.state.printedContent === 3) return <AddTask />
   }
 
   render () {
@@ -73,9 +75,10 @@ class App extends Component {
 
     return (
       <div className='wrapper'>
-        <Navbars 
+        <Navbars
           changeContent={this.changeContent}
-          signOut={this.signOut} />
+          signOut={this.signOut}
+        />
         {this.contentDisplayed()}
       </div>
     )

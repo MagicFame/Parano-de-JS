@@ -25,18 +25,18 @@ class Connexion extends Component {
 
     // Check if user is still connected
     if (sessionStorage.getItem('token') !== undefined) {
-      let token = sessionStorage.getItem('token')
+      const token = sessionStorage.getItem('token')
       await fetch('http://localhost:8124/api/connected/current', {
         method: 'GET',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json;charset=UTF-8',
-          'Authorization': 'Bearer ' + token
+          Authorization: 'Bearer ' + token
         }
       }).then(async answer => {
         const answerParsed = await answer.json()
         if (answerParsed.status === 'success') {
-          this.setState({ 
+          this.setState({
             connected: true,
             token,
             id: answerParsed.id
