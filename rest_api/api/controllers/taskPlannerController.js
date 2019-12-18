@@ -1,28 +1,13 @@
 'use strict'
 
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 var Task = require('../models/taskPlannerModel')
-var User = require('../models/userModel')
+// var User = require('../models/userModel')
 
 exports.list_all_tasks = function (req, res) {
   Task.find({}, function (err, task) {
     if (err) res.send(err)
     res.json(task)
-  })
-}
-
-exports.get_users = function (req, res) {
-  User.find({}, function (err, user) {
-    if (err) res.send(err)
-    res.json(user)
-  })
-}
-
-exports.create_user = function (req, res) {
-  var newuser = new User(req.body)
-  newuser.save(function (err, user) {
-    if (err) res.send(err)
-    res.json(user)
   })
 }
 

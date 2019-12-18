@@ -3,28 +3,59 @@ const mongoose = require('mongoose')
 const app = express()
 const bodyParser = require('body-parser')
 
+var cors = require('cors')
+
+var jwt = require('jsonwebtoken')
 // Define the port
 const port = 8124
 
-// Initialization of models
-var User = require('./api/models/userModel')
-var Task = require('./api/models/taskPlannerModel')
-
 // Connection to the MongoDB
-mongoose.connect('mongodb://localhost/mydb')
+mongoose.connect('mongodb://localhost/mydb', { useNewUrlParser: true, useUnifiedTopology: true })
+
+// jwt secret token
+app.set('secretKey', 'nodeRestApi')
 
 // Initialization of the body Parser
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
+app.use(cors())
+
 // Initialization of routes
-var routes = require('./api/routes/taskPlannerRoutes')
-routes(app)
+app.get('/', function (req, res) {
+  res.json({ tutorial: 'Build REST API with node.js' })
+})
+
+const users = require('./api/routes/userRoutes')
+const tasks = require('./api/routes/taskRoutes')
+const authentication = require('./api/routes/authenticationRoutes')
+const connected = require('./api/routes/connectedRoutes')
+
+// Public route
+app.use('/api/users', users)
+app.use('/api/tasks', tasks)
+app.use('/api/authentication', authentication)
+
+// Private route
+app.use('/api/connected', validateUser, connected)
 
 // Listen on port
 app.listen(port, function () {
   console.log('Serveur started on the port : ' + port)
 })
+
+// Token validation
+function validateUser (req, res, next) {
+  const token = req.header('Authorization').replace('Bearer ', '')
+  jwt.verify(token, req.app.get('secretKey'), function (err, decoded) {
+    if (err) {
+      res.status(401).json({ status: 'error', message: err.message, data: null })
+    } else {
+      req.body.userId = decoded.id
+      next()
+    }
+  })
+}
 
 // Middleware for 404 error
 app.use(function (req, res) {
