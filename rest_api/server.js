@@ -21,7 +21,6 @@ app.use(bodyParser.json())
 
 app.use(cors())
 
-
 // Initialization of routes
 app.get('/', function (req, res) {
   res.json({ tutorial: 'Build REST API with node.js' })
