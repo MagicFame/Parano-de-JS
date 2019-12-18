@@ -1,5 +1,6 @@
 import React from 'react'
 import './Navbar.css'
+import { Dropdown, DropdownButton } from 'react-bootstrap'
 
 const Navbars = ({ changeContent }) => {
   return (
@@ -13,19 +14,12 @@ const Navbars = ({ changeContent }) => {
           <li className='nav-item'>
             <button className='btn btn-dark' id='button' onClick={() => changeContent(2)}>Profil</button>
           </li>
-          <li className='nav-item dropdown'>
-            <a href='#pageSubmenu' data-toggle='collapse' aria-expanded='false' class='dropdown-toggle'>Pages</a>
-            <ul class='collapse list-unstyled' id='pageSubmenu'>
-              <li>
-                <a href='#'>Page 1</a>
-              </li>
-              <li>
-                <a href='#'>Page 2</a>
-              </li>
-              <li>
-                <a href='#'>Page 3</a>
-              </li>
-            </ul>
+          <li className='nav-item dropdown' style={{ textAlign: 'center' }}>
+            <DropdownButton id='dropdown-item-button' variant='dark' title='Tasks'>
+              <Dropdown.Item as='button' onClick={() => changeContent(2)}>Add a new task</Dropdown.Item>
+              <Dropdown.Item as='button'>List existing tasks</Dropdown.Item>
+              <Dropdown.Item as='button'>Something else</Dropdown.Item>
+            </DropdownButton>
           </li>
         </ul>
       </div>

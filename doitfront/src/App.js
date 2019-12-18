@@ -14,18 +14,42 @@ class App extends Component {
   }
 
   async componentDidMount () {
-    await fetch(`http://localhost:8124/api/users/user/id/${this.state.id}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json;charset=UTF-8'
-      }
-    }).then(async answer => {
-      const responseParse = await answer.json()
-      const username = responseParse.username
-      this.setState({ username })
-      //localStorage.setItem('key', 'value')
-    })
+
+   // revérifier les identifiants
+    if (sessionStorage.getItem('token') !== undefined) {
+      let token = sessionStorage.getItem('token')
+      await fetch('http://localhost:8124/api/connected/current', {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8',
+          'Authorization': 'Bearer ' + token
+        }
+      }).then(async answer => {
+        const answerParsed = await answer.json()
+        if (answerParsed.status === 'success') {
+          this.setState({ id: answerParsed.id })
+        } else {
+          this.setState({ id: '' })
+        }
+      })
+      // Récupérer les informations sur un utilisateur
+      await fetch(`http://localhost:8124/api/users/user/id/${this.state.id}`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8'
+        }
+      }).then(async answer => {
+        const responseParse = await answer.json()
+        const username = responseParse.username
+        this.setState({ username })
+      })
+    } else {
+      this.setState({ id: '' })
+    }
+
+    
   }
 
   changeContent = mode => {
@@ -40,7 +64,7 @@ class App extends Component {
   }
 
   render () {
-    if (this.props.location.state === undefined || this.props.location.state.id === undefined) {
+    if (this.state.id === '') {
       return <Redirect push to='/' />
     }
 

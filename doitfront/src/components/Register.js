@@ -122,7 +122,7 @@ class Register extends Component {
           </div>
           <button type='submit' className='btn btn-success'>Sign in</button>
         </form>
-        <p>Got account ? <button type='button' onClick={() => this.props.onHandleClick(1)} class='btn btn-info'>Login</button></p>
+        <p>Got account ? <button type='button' onClick={() => this.props.onHandleClick(1)} className='btn btn-info'>Login</button></p>
       </div>
     )
   }
