@@ -17,7 +17,7 @@ const Navbars = ({ changeContent, signOut }) => {
           <li className='nav-item dropdown' style={{ textAlign: 'center' }}>
             <DropdownButton id='dropdown-item-button' variant='dark' title='Tasks'>
               <Dropdown.Item as='button' onClick={() => changeContent(3)}>Add a new task</Dropdown.Item>
-              <Dropdown.Item as='button'>List existing tasks</Dropdown.Item>
+              <Dropdown.Item as='button' onClick={() => changeContent(4)}>List existing tasks</Dropdown.Item>
               <Dropdown.Item as='button'>Something else</Dropdown.Item>
             </DropdownButton>
           </li>
