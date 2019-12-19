@@ -18,7 +18,8 @@
 
 	api/connected/current/ (get id from the connected user)
 	api/connected/current/info (get full detail from the connected user)
-
+	api/connected/current/tasks
+	api/connected/current/task
 
 
 
