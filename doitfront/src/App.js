@@ -64,7 +64,7 @@ class App extends Component {
 
   contentDisplayed = () => {
     if (this.state.printedContent === 1) {
-      return <Dashboard pseudo={this.state.username} />
+      return <Dashboard token={this.state.token} id={this.state.id} pseudo={this.state.username} />
     } else if (this.state.printedContent === 2) return <Profil />
     else if (this.state.printedContent === 3) return <AddTask token={this.state.token} id={this.state.id} changeContent={this.changeContent}/>
     else if (this.state.printedContent === 4) return <UserTasks token={this.state.token} id={this.state.id}/>

@@ -6,8 +6,11 @@ const Tables = ({ tasks }) => {
     return (
       <tr key={key}>
         <td>{tasks[key].title}</td>
-        <td>{tasks[key].description}</td>
-        <td>{tasks[key].deadline}</td>
+        <td>{tasks[key].content}</td>
+        <td>{tasks[key].comment}</td>
+        <td>{tasks[key].startState}</td>
+        <td>{tasks[key].endState}</td>
+        <td>{tasks[key].relevance}</td>
       </tr>
     )
   })
@@ -19,9 +22,12 @@ const Tables = ({ tasks }) => {
       <Table striped bordered hover variant='dark'>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Deadline</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Comment</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Relevance</th>
           </tr>
         </thead>
         <tbody>

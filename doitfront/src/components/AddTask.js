@@ -42,11 +42,10 @@ class AddTask extends Component {
   }
 
   // Add a new task
-  // TO DO : Add a new task
   addNewTask = async event => {
     event.preventDefault()
     // Call API to add a task (POST)
-    await fetch('http://localhost:8124/api/tasks/task', {
+    await fetch('http://localhost:8124/api/connected/current/task', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
