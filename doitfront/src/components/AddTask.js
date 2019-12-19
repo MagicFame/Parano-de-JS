@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import Card from './Card'
+import Notiflix from 'notiflix-react'
 
 class AddTask extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      title: '',
-      description: '',
-      comment: '',
-      deadline: '',
-      priority: ''
-    }
+
+  state = {
+    title: '',
+    description: '',
+    comment: '',
+    deadline: '',
+    priority: ''
+  }
+
+  componentDidMount () {
+    Notiflix.Report.Init({})
   }
 
   handleChangeTitle = event => {
@@ -40,21 +43,53 @@ class AddTask extends Component {
 
   // Add a new task
   // TO DO : Add a new task
-  addNewTask (event) {
+   addNewTask = async event => {
     event.preventDefault()
+    // Call API to add a task (POST)
+    await fetch('http://localhost:8124/api/tasks/task', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: 'Bearer ' + this.props.token
+      },
+      body: JSON.stringify({
+        title: this.state.title,
+        content: this.state.description,
+        comment: this.state.comment,
+        startState: new Date(),
+        endState: this.state.deadline,
+        creator: this.props.id,
+        relevance: this.state.priority
+      })
+    }).then(async answer => {
+      const answerParsed = await answer.json()
+      if (answerParsed.errors !== undefined) {
+        Notiflix.Report.Failure('An error occured', answerParsed.errors, 'Click')
+      } else if (answerParsed._id !== undefined) {
+        Notiflix.Report.Success(
+          'Task created', answerParsed.title + ' has been created', 'Thanks',
+          () => {
+            this.props.changeContent(1)
+          }
+        )
+      } else {
+        Notiflix.Report.Failure('An error occured', 'Please try again', 'Click')
+      }
+    })
   }
 
-  render () {
+  render() {
     return (
       <div style={{ width: `${window.innerWidth * 0.8}px`, marginLeft: '15%' }}>
         <h1>Add a new task</h1>
-        <Card 
+        <Card
           handleChangeTitle={this.handleChangeTitle}
           handleChangeDesc={this.handleChangeDesc}
           handleChangeComment={this.handleChangeComment}
           handleChangeDeadline={this.handleChangeDeadline}
           handleChangePriority={this.handleChangePriority}
-          addNewTask={this.addNewTask}  />
+          addNewTask={this.addNewTask} />
       </div>
     )
   }
