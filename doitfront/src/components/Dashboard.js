@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Tables from './Tables'
 import UserTasks from './UserTasks'
 
 class Dashboard extends Component {
@@ -16,10 +15,10 @@ class Dashboard extends Component {
 
   render () {
     return (
-      <div style={{ width: `${window.innerWidth * 0.8}px`, marginLeft: '15%' }}>
-        <header><h1>Welcome in the Dashboard {this.props.pseudo} </h1></header>
+      <>
+        <header style={{ width: '90%', marginLeft: '10%' }}><h1>Welcome in the Dashboard {this.props.pseudo} </h1></header>
         <UserTasks token={this.props.token} id={this.props.id} />
-      </div>
+      </>
     )
   }
 }

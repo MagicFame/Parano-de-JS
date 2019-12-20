@@ -23,7 +23,9 @@ class UserTasks extends Component {
 
   render () {
     return (
-      <Tables tasks={this.state.tasks}/>
+      <div style={{ width: '90%', marginLeft: '10%' }}>
+        <Tables tasks={this.state.tasks}/>
+      </div>
     )
   }
 }

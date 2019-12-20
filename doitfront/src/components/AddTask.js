@@ -64,7 +64,7 @@ class AddTask extends Component {
     }).then(async answer => {
       const answerParsed = await answer.json()
       if (answerParsed.errors !== undefined) {
-        Notiflix.Report.Failure('An error occured', answerParsed.errors, 'Click')
+        Notiflix.Report.Failure('An error occured', answerParsed.message, 'Click')
       } else if (answerParsed._id !== undefined) {
         Notiflix.Report.Success(
           'Task created', answerParsed.title + ' has been created', 'Thanks',
@@ -80,7 +80,7 @@ class AddTask extends Component {
 
   render() {
     return (
-      <div style={{ width: `${window.innerWidth * 0.8}px`, marginLeft: '15%' }}>
+      <div style={{ width: '90%', marginLeft: '10%' }}>
         <h1>Add a new task</h1>
         <Card
           handleChangeTitle={this.handleChangeTitle}

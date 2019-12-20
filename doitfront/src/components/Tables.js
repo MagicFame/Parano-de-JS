@@ -15,7 +15,7 @@ const Tables = ({ tasks }) => {
     )
   })
   return (
-    <div align='center' className='card bg-dark text-white mx-auto' style={{ marginTop: '5em' }}>
+    <div align='center' className='card bg-dark text-white mx-auto' style={{ width: '85%' }}>
       <div className='card-header'>
         <h2>Tasks</h2>
       </div>

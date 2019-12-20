@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard'
 import Profil from './components/Profil'
 import AddTask from './components/AddTask'
 import UserTasks from './components/UserTasks'
+import Footer from './components/Footer'
 
 class App extends Component {
   state = {
@@ -82,6 +83,8 @@ class App extends Component {
           signOut={this.signOut}
         />
         {this.contentDisplayed()}
+        
+        <Footer />
       </div>
     )
   }
