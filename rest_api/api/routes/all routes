@@ -20,6 +20,7 @@
 	api/connected/current/info (get full detail from the connected user)
 	api/connected/current/tasks
 	api/connected/current/task
+	api/connected/current/task/edit
 
 
 

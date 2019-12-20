@@ -10,7 +10,7 @@ var jwt = require('jsonwebtoken')
 const port = 8124
 
 // Connection to the MongoDB
-mongoose.connect('mongodb://localhost/mydb', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/mydb', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
 // jwt secret token
 app.set('secretKey', 'nodeRestApi')

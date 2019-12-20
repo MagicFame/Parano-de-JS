@@ -18,3 +18,11 @@ exports.create_task_from_user = function (req, res, next) {
     res.json(task)
   })
 }
+
+exports.edit_task_from_user = function (req, res) {
+  Task.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true, runValidators: true }, function (err, task) {
+    if (req.body.userId !== task.creator) res.status(401).json({ status: 'error', message: 'Only the creator can update the task' })
+    if (err) res.send(err)
+    res.json(task)
+  })
+}
