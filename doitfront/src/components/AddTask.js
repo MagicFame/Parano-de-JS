@@ -81,7 +81,7 @@ class AddTask extends Component {
   render() {
     return (
       <div style={{ width: '90%', marginLeft: '10%' }}>
-        <h1>Add a new task</h1>
+        <span />
         <Card
           handleChangeTitle={this.handleChangeTitle}
           handleChangeDesc={this.handleChangeDesc}

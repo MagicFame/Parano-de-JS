@@ -24,6 +24,7 @@ class UserTasks extends Component {
   render () {
     return (
       <div style={{ width: '90%', marginLeft: '10%' }}>
+        <span />
         <Tables tasks={this.state.tasks}/>
       </div>
     )

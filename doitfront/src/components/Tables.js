@@ -1,5 +1,7 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 const Tables = ({ tasks }) => {
   const data = Object.keys(tasks).map(key => {
@@ -8,14 +10,16 @@ const Tables = ({ tasks }) => {
         <td>{tasks[key].title}</td>
         <td>{tasks[key].content}</td>
         <td>{tasks[key].comment}</td>
-        <td>{tasks[key].startState}</td>
-        <td>{tasks[key].endState}</td>
+        <td>{new Date(tasks[key].startState).toLocaleDateString()}</td>
+        <td>{new Date(tasks[key].endState).toLocaleDateString()}</td>
         <td>{tasks[key].relevance}</td>
+        <td id={`td-${tasks[key]._id}`}>{tasks[key].status[0]}</td>
+        <td><FontAwesomeIcon icon={faCoffee} /></td>
       </tr>
     )
   })
   return (
-    <div align='center' className='card bg-dark text-white mx-auto' style={{ width: '85%' }}>
+    <div align='center' className='card bg-dark text-white mx-auto' style={{ width: '85%', marginTop: '5%' }}>
       <div className='card-header'>
         <h2>Tasks</h2>
       </div>
@@ -28,6 +32,8 @@ const Tables = ({ tasks }) => {
             <th>Start date</th>
             <th>End date</th>
             <th>Relevance</th>
+            <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
