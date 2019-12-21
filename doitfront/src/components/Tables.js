@@ -1,9 +1,9 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faMarker } from '@fortawesome/free-solid-svg-icons'
 
-const Tables = ({ tasks }) => {
+const Tables = ({ tasks, changeStateModal }) => {
   const data = Object.keys(tasks).map(key => {
     return (
       <tr key={key}>
@@ -13,8 +13,8 @@ const Tables = ({ tasks }) => {
         <td>{new Date(tasks[key].startState).toLocaleDateString()}</td>
         <td>{new Date(tasks[key].endState).toLocaleDateString()}</td>
         <td>{tasks[key].relevance}</td>
-        <td id={`td-${tasks[key]._id}`}>{tasks[key].status[0]}</td>
-        <td><FontAwesomeIcon icon={faCoffee} /></td>
+        <td>{tasks[key].status[0]}</td>
+        <td style={{ textAlign: 'center' }}><FontAwesomeIcon onClick={() => changeStateModal(tasks[key]._id)} icon={faMarker} /></td>
       </tr>
     )
   })
