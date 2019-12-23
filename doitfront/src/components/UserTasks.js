@@ -42,15 +42,14 @@ class UserTasks extends Component {
 
   }
 
-  cancelModifications = async (event) => {
-    event.preventDefault()
+  cancelModifications = async () => {
     this.changeStateModal()
     await this.componentDidMount()
   }
 
   isModal () {
     if (this.state.modalOpen === true) {
-      return(
+      return (
         <ModalUpdate
           modalOpen={this.state.modalOpen}
           changeStateModal={this.changeStateModal}
@@ -62,7 +61,7 @@ class UserTasks extends Component {
         />
       )
     } else {
-      return(
+      return (
         <>
         </>
       )
