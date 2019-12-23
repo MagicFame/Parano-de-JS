@@ -8,5 +8,6 @@ router.get('/current', connectedUserController.check)
 router.post('/current/task', connectedTaskController.create_task_from_user)
 router.get('/current/tasks', connectedTaskController.get_tasks_from_user)
 router.post('/current/task/edit', connectedTaskController.edit_task_from_user)
+router.delete('/current/task/delete/:taskId', connectedTaskController.delete_task_from_user)
 
 module.exports = router

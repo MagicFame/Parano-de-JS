@@ -19,10 +19,21 @@ exports.create_task_from_user = function (req, res, next) {
   })
 }
 
+exports.delete_task_from_user = function (req, res, next) {
+  Task.remove({
+    _id: req.params.taskId
+  }, function (err, task) {
+    if (err) { res.send(err) } else res.json({ message: 'Task successfully deleted' })
+  })
+}
+
 exports.edit_task_from_user = function (req, res) {
   Task.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true, runValidators: true }, function (err, task) {
-    if (req.body.userId !== task.creator) res.status(401).json({ status: 'error', message: 'Only the creator can update the task' })
-    if (err) res.send(err)
+    if (task === undefined) return res.status(400).json({ status: 'error', message: 'Task undefined, the id may be invalid or the status is undefined' })
+    if (err) return res.status(400).json({ status: 'error', message: err })
+    if (req.body.userId !== task.creator) {
+      return res.status(401).json({ status: 'error', message: 'Only the creator can update the task' })
+    }
     res.json(task)
   })
 }
