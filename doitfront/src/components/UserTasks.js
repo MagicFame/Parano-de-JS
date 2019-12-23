@@ -4,9 +4,9 @@ import ModalUpdate from './ModalUpdate'
 
 class UserTasks extends Component {
   state = {
-    tasks : {},
-    modalOpen : false,
-    taskId : ''
+    tasks: {},
+    modalOpen: false,
+    taskId: ''
   }
 
   async componentDidMount () {
@@ -20,7 +20,7 @@ class UserTasks extends Component {
     }).then(async answer => {
       const answerParsed = await answer.json()
       const tasks = answerParsed
-      this.setState({tasks})
+      this.setState({ tasks })
     })
   }
 
@@ -35,11 +35,31 @@ class UserTasks extends Component {
     this.setState({ modalOpen, taskId })
   }
 
-  saveModifications = async event => {
+  saveModifications = async (event, key) => {
     event.preventDefault()
-    
-    // TO DO : Save the task in back (fetch)
-
+    await fetch('http://localhost:8124/api/connected/current/task/edit', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: 'Bearer ' + this.props.token
+      },
+      body: JSON.stringify({
+        _id: this.state.tasks[key]._id,
+        comment: this.state.tasks[key].comment,
+        content: this.state.tasks[key].content,
+        creator: this.state.tasks[key].creator,
+        endState: this.state.tasks[key].endState,
+        relevance: this.state.tasks[key].relevance,
+        startState: this.state.tasks[key].startState,
+        status: this.state.tasks[key].status,
+        title: this.state.tasks[key].title
+      })
+    }).then(async () => {
+      this.changeStateModal()
+      await this.componentDidMount()
+    }
+    )
   }
 
   cancelModifications = async () => {

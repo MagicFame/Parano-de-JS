@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Button, Container, Row } from 'react-bootstrap'
 
-const ModalUpdate = ({ tasks, modalOpen, changeStateModal, modifyTask, idKey, cancelModifications }) => {
+const ModalUpdate = ({ tasks, modalOpen, modifyTask, idKey, cancelModifications, saveModifications }) => {
   const handleChange = event => {
     const task = tasks[idKey]
     const { name, value } = event.target
@@ -13,6 +13,18 @@ const ModalUpdate = ({ tasks, modalOpen, changeStateModal, modifyTask, idKey, ca
     const task = tasks[idKey]
     task.status[0] = event.target.value
     modifyTask(task, idKey)
+  }
+
+  const handleChangeDate = event => {
+    if (event.target.value !== '') {
+      const task = tasks[idKey]
+      task.endState = event.target.value
+      modifyTask(task, idKey)
+    }
+  }
+
+  const saveUpdate = event => {
+    saveModifications(event, idKey)
   }
 
   return (
@@ -42,7 +54,7 @@ const ModalUpdate = ({ tasks, modalOpen, changeStateModal, modifyTask, idKey, ca
             </div>
             <div className='form-group col-sm-6'>
               <label htmlFor='deadline'>Deadline</label>
-              <input className='form-control' name='endState' id='deadline' type='date' defaultValue={new Date(tasks[idKey].endState).toISOString().substr(0, 10)} onChange={handleChange} />
+              <input className='form-control' name='endState' id='deadline' type='date' value={new Date(tasks[idKey].endState).toISOString().substr(0, 10)} onChange={handleChangeDate} />
             </div>
           </Row>
           <Row>
@@ -71,7 +83,7 @@ const ModalUpdate = ({ tasks, modalOpen, changeStateModal, modifyTask, idKey, ca
         <Button variant='dark' onClick={cancelModifications}>
           Close
         </Button>
-        <Button variant='success' onClick={changeStateModal}>
+        <Button variant='success' onClick={saveUpdate}>
           Save Changes
         </Button>
       </Modal.Footer>

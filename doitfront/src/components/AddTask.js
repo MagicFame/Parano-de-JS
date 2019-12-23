@@ -3,7 +3,6 @@ import Card from './Card'
 import Notiflix from 'notiflix-react'
 
 class AddTask extends Component {
-
   state = {
     title: '',
     description: '',
@@ -78,7 +77,7 @@ class AddTask extends Component {
     })
   }
 
-  render() {
+  render () {
     return (
       <div style={{ width: '90%', marginLeft: '10%' }}>
         <span />
