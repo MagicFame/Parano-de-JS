@@ -33,7 +33,7 @@ const Card = ({ handleChangeTitle, handleChangeDesc, handleChangeComment, handle
             <div className='form-group'>
               <label htmlFor='priority'>Priority *</label>
               <select className='custom-select' id='inputGroupSelect01' onChange={handleChangePriority}>
-                <option value='default'>Choose...</option>
+                <option value='Default'>Choose...</option>
                 <option value='Low'>Low</option>
                 <option value='Medium'>Medium</option>
                 <option value='High'>High</option>

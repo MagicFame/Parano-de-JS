@@ -61,7 +61,7 @@ const ModalUpdate = ({ tasks, modalOpen, modifyTask, idKey, cancelModifications,
             <div className='form-group col-sm-6'>
               <label htmlFor='priority'>Priority</label>
               <select className='custom-select' name='relevance' id='inputGroupSelect01' value={tasks[idKey].relevance} onChange={handleChange}>
-                <option value='default'>Choose...</option>
+                <option value='Default'>Choose...</option>
                 <option value='Low'>Low</option>
                 <option value='Medium'>Medium</option>
                 <option value='High'>High</option>
@@ -70,9 +70,9 @@ const ModalUpdate = ({ tasks, modalOpen, modifyTask, idKey, cancelModifications,
             <div className='form-group col-sm-6'>
               <label htmlFor='priority'>Status</label>
               <select className='custom-select' name='status' id='inputGroupSelect01' onChange={handleChangeStatus} value={tasks[idKey].status[0]}>
-                <option value='default'>Choose...</option>
-                <option value='pending'>Pending</option>
-                <option value='On going'>On Going</option>
+                <option value='Default'>Choose...</option>
+                <option value='Pending'>Pending</option>
+                <option value='On Going'>On Going</option>
                 <option value='Completed'>Completed</option>
               </select>
             </div>

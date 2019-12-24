@@ -1,0 +1,12 @@
+TODO :
+
+Supprimer une tâche
+Afficher des infos dans le Dashboard (ratio, ...)
+Profil
+Tri des tâches par deadline, label
+Design
+
+
+En plus :
+
+Ajouter adresse avec API Maps
