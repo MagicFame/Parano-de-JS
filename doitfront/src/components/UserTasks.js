@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Tables from './Tables'
 import ModalUpdate from './ModalUpdate'
+import Notiflix from 'notiflix-react'
 
 class UserTasks extends Component {
   state = {
@@ -10,6 +11,10 @@ class UserTasks extends Component {
   }
 
   async componentDidMount () {
+    Notiflix.Confirm.Init({
+      titleColor: '#ffc107',
+      okButtonBackground: '#ffc107'
+    })
     await fetch('http://localhost:8124/api/connected/current/tasks', {
       method: 'GET',
       headers: {
@@ -28,6 +33,25 @@ class UserTasks extends Component {
     const tasks = { ...this.state.tasks }
     tasks[key] = task
     this.setState({ tasks })
+  }
+
+  deleteTask = async (key) => {
+    await fetch(`http://localhost:8124/api/connected/current/task/delete/${key}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8',
+        Authorization: 'Bearer ' + this.props.token
+      }
+    })
+      .then(async () => {
+        await this.componentDidMount()
+      })
+  }
+
+  askDeleteTask = (key) => {
+    Notiflix.Confirm.Show('Confirmation', 'Do you really want to delete this task ?',
+      'Yes', 'No', () => this.deleteTask(key), () => console.log('no'))
   }
 
   changeStateModal = taskId => {
@@ -75,7 +99,8 @@ class UserTasks extends Component {
           changeStateModal={this.changeStateModal}
           tasks={this.state.tasks}
           modifyTask={this.modifyTask}
-          idKey={Object.keys(this.state.tasks).find(key => this.state.tasks[key]._id === this.state.taskId)}
+          idKey={Object.keys(this.state.tasks)
+            .find(key => this.state.tasks[key]._id === this.state.taskId)}
           cancelModifications={this.cancelModifications}
           saveModifications={this.saveModifications}
         />
@@ -92,7 +117,11 @@ class UserTasks extends Component {
     return (
       <div style={{ width: '90%', marginLeft: '10%' }}>
         <span />
-        <Tables tasks={this.state.tasks} changeStateModal={this.changeStateModal} />
+        <Tables
+          tasks={this.state.tasks}
+          changeStateModal={this.changeStateModal}
+          askDeleteTask={this.askDeleteTask}
+        />
         {this.isModal()}
       </div>
     )

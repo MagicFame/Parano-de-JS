@@ -1,9 +1,9 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMarker } from '@fortawesome/free-solid-svg-icons'
+import { faMarker, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-const Tables = ({ tasks, changeStateModal }) => {
+const Tables = ({ tasks, changeStateModal, askDeleteTask }) => {
   const data = Object.keys(tasks).map(key => {
     return (
       <tr key={key}>
@@ -14,7 +14,15 @@ const Tables = ({ tasks, changeStateModal }) => {
         <td>{new Date(tasks[key].endState).toLocaleDateString()}</td>
         <td>{tasks[key].relevance}</td>
         <td>{tasks[key].status[0]}</td>
-        <td style={{ textAlign: 'center' }}><FontAwesomeIcon onClick={() => changeStateModal(tasks[key]._id)} icon={faMarker} /></td>
+        <td style={{ textAlign: 'center' }}>
+          <div className='row'>
+            <div className='col-3'>
+              <FontAwesomeIcon onClick={() => changeStateModal(tasks[key]._id)} icon={faMarker} />
+            </div><div className='col-3'>
+              <FontAwesomeIcon onClick={() => askDeleteTask(tasks[key]._id)} icon={faTrash} />
+            </div>
+          </div>
+        </td>
       </tr>
     )
   })
