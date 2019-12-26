@@ -1,8 +1,7 @@
 TODO :
 
 Afficher des infos dans le Dashboard (ratio, ...)
-Profil
-Design
+-> Design
 
 
 En plus :

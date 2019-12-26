@@ -5,7 +5,7 @@ import 'react-google-places-autocomplete/dist/assets/index.css'
 
 const Card = ({ handleChangeTitle, handleChangeDesc, handleChangeComment, handleChangeDeadline, handleChangePriority, addNewTask }) => {
   return (
-    <div style={{ width: '70%', marginTop: '5%' }} className='card bg-dark text-white mx-auto'>
+    <div style={{ width: '85%', marginTop: '5%' }} className='card bg-dark text-white mx-auto'>
       <div className='card-header'><h2 className='text-center'>Add a new task</h2></div>
       <div className='card-body' style={{ display: 'flex' }}>
         <div className='col-md-8'>

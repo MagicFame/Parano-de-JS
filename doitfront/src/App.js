@@ -11,9 +11,9 @@ import Footer from './components/Footer'
 class App extends Component {
   state = {
     id: this.props.location.state !== undefined ? this.props.location.state.id : '',
-    username: '',
     printedContent: 1,
-    token: this.props.location.state !== undefined ? this.props.location.state.token : ''
+    token: this.props.location.state !== undefined ? this.props.location.state.token : '',
+    user: {}
   }
 
   async componentDidMount () {
@@ -44,9 +44,8 @@ class App extends Component {
           Authorization: 'Bearer ' + token
         }
       }).then(async answer => {
-        const responseParse = await answer.json()
-        const username = responseParse.username
-        this.setState({ username })
+        const user = await answer.json()
+        this.setState({ user })
       })
     } else {
       this.setState({ id: '' })
@@ -65,10 +64,10 @@ class App extends Component {
 
   contentDisplayed = () => {
     if (this.state.printedContent === 1) {
-      return <Dashboard token={this.state.token} id={this.state.id} pseudo={this.state.username} />
-    } else if (this.state.printedContent === 2) return <Profil />
-    else if (this.state.printedContent === 3) return <AddTask token={this.state.token} id={this.state.id} changeContent={this.changeContent}/>
-    else if (this.state.printedContent === 4) return <UserTasks token={this.state.token} id={this.state.id}/>
+      return <Dashboard token={this.state.token} id={this.state.id} user={this.state.user} />
+    } else if (this.state.printedContent === 2) return <Profil user={this.state.user} />
+    else if (this.state.printedContent === 3) return <AddTask token={this.state.token} id={this.state.id} changeContent={this.changeContent} />
+    else if (this.state.printedContent === 4) return <UserTasks token={this.state.token} id={this.state.id} />
   }
 
   render () {
@@ -83,7 +82,6 @@ class App extends Component {
           signOut={this.signOut}
         />
         {this.contentDisplayed()}
-        
         <Footer />
       </div>
     )

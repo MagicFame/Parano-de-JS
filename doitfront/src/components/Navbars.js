@@ -1,6 +1,5 @@
 import React from 'react'
 import './Navbar.css'
-import { Dropdown, DropdownButton } from 'react-bootstrap'
 
 const Navbars = ({ changeContent, signOut }) => {
   return (
@@ -14,12 +13,11 @@ const Navbars = ({ changeContent, signOut }) => {
           <li className='nav-item'>
             <button className='btn btn-dark' id='button' onClick={() => changeContent(2)}>Profil</button>
           </li>
-          <li className='nav-item dropdown' style={{ textAlign: 'center' }}>
-            <DropdownButton id='dropdown-item-button' variant='dark' title='Tasks'>
-              <Dropdown.Item as='button' onClick={() => changeContent(3)}>Add a new task</Dropdown.Item>
-              <Dropdown.Item as='button' onClick={() => changeContent(4)}>List existing tasks</Dropdown.Item>
-              <Dropdown.Item as='button'>Something else</Dropdown.Item>
-            </DropdownButton>
+          <li className='nav-item'>
+            <button className='btn btn-dark' id='button' onClick={() => changeContent(3)}>Add a new task</button>
+          </li>
+          <li className='nav-item'>
+            <button className='btn btn-dark' id='button' onClick={() => changeContent(4)}>List tasks</button>
           </li>
           <li>
             <button className='btn btn-danger' id='button' onClick={signOut}>Sign out</button>

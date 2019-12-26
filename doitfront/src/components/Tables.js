@@ -31,7 +31,7 @@ const Tables = ({ tasks, changeStateModal, askDeleteTask, modifyOrder }) => {
     <div align='center' className='card bg-dark text-white mx-auto' style={{ width: '85%', marginTop: '5%' }}>
       <div className='card-header'>
         <h2>Tasks</h2>
-        <div className='row'>
+        <div className='row' style={{ marginTop: '2%' }}>
           <div className='col-4'>
             <button type='button' onClick={() => modifyOrder(1)} className='btn btn-outline-light btn-sm btn-block'>Order by name</button>
           </div>

@@ -16,7 +16,7 @@ class Dashboard extends Component {
   render () {
     return (
       <>
-        <header style={{ width: '90%', marginLeft: '10%' }}><h1>Welcome in the Dashboard {this.props.pseudo} </h1></header>
+        <header style={{ width: '90%', marginLeft: '10%' }}><h1 style={{ textAlign: 'center' }}>Welcome in the Dashboard {this.props.user.firstname} </h1></header>
         <UserTasks token={this.props.token} id={this.props.id} />
       </>
     )
