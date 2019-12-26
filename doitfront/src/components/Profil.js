@@ -1,9 +1,11 @@
 import React from 'react'
+import UserInformation from './UserInformation'
 
-const Profil = ({ pseudo }) => {
+const Profil = ({ user }) => {
   return (
-    <div style={{ width: `${window.innerWidth * 0.8}px`, marginLeft: '10%' }}>
-      <p>Bienvenue sur ton profil {pseudo}</p>
+    <div style={{ width: '90%', marginLeft: '10%' }}>
+      <span />
+      <UserInformation user={user} />
     </div>
   )
 }

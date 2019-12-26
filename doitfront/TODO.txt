@@ -1,0 +1,9 @@
+TODO :
+
+Afficher des infos dans le Dashboard (ratio, ...)
+-> Design
+
+
+En plus :
+
+Ajouter adresse avec API Maps

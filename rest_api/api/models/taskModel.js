@@ -9,15 +9,15 @@ var TaskSchema = new Schema({
   startState: { type: Date, required: true },
   endState: { type: Date, required: true },
   participants: { type: String, required: false },
-  creator: { type: String, required: true },
+  creator: { type: String, required: true, immutable: true },
   location: { type: String, required: false },
   relevance: { type: String, required: false },
   status: {
     type: [{
       type: String,
-      enum: ['pending', 'ongoing', 'completed']
+      enum: ['Pending', 'On Going', 'Completed']
     }],
-    default: ['pending']
+    default: ['Pending']
   }
 })
 

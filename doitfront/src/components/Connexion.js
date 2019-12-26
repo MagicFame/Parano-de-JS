@@ -19,8 +19,33 @@ class Connexion extends Component {
     }
   }
 
-  componentDidMount () {
+  async componentDidMount () {
+    // Initialization of the library Notiflix
     Notiflix.Report.Init({})
+
+    // Check if user is still connected
+    if (sessionStorage.getItem('token') !== undefined) {
+      const token = sessionStorage.getItem('token')
+      await fetch('http://localhost:8124/api/connected/current', {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8',
+          Authorization: 'Bearer ' + token
+        }
+      }).then(async answer => {
+        const answerParsed = await answer.json()
+        if (answerParsed.status === 'success') {
+          this.setState({
+            connected: true,
+            token,
+            id: answerParsed.id
+          })
+        } else {
+          this.setState({ connected: false })
+        }
+      })
+    }
   }
 
   handleSubmit = async (event) => {
@@ -84,6 +109,8 @@ class Connexion extends Component {
 
   render () {
     if (this.state.connected) {
+      sessionStorage.setItem('token', this.state.token)
+      sessionStorage.setItem('id', this.state.id)
       return <Redirect push to={{ pathname: '/home', state: { token: this.state.token, id: this.state.id } }} />
     }
     return (

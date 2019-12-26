@@ -10,7 +10,7 @@ var jwt = require('jsonwebtoken')
 const port = 8124
 
 // Connection to the MongoDB
-mongoose.connect('mongodb://localhost/mydb', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/mydb', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
 // jwt secret token
 app.set('secretKey', 'nodeRestApi')
@@ -46,15 +46,19 @@ app.listen(port, function () {
 
 // Token validation
 function validateUser (req, res, next) {
-  const token = req.header('Authorization').replace('Bearer ', '')
-  jwt.verify(token, req.app.get('secretKey'), function (err, decoded) {
-    if (err) {
-      res.status(401).json({ status: 'error', message: err.message, data: null })
-    } else {
-      req.body.userId = decoded.id
-      next()
-    }
-  })
+  if (req.header('Authorization') === undefined) {
+    res.status(403).json({ status: 'error', message: 'The token cannot be empty' })
+  } else {
+    const token = req.header('Authorization').replace('Bearer ', '')
+    jwt.verify(token, req.app.get('secretKey'), function (err, decoded) {
+      if (err) {
+        res.status(401).json({ status: 'error', message: err.message, data: null })
+      } else {
+        req.body.userId = decoded.id
+        next()
+      }
+    })
+  }
 }
 
 // Middleware for 404 error
