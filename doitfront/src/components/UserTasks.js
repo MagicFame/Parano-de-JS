@@ -91,6 +91,31 @@ class UserTasks extends Component {
     await this.componentDidMount()
   }
 
+  // type === 1 : by name, type === 2 : by status, type === 3 : by deadline
+  modifyOrder = type => {
+    let tasks = Object.keys({ ...this.state.tasks }).map(i => this.state.tasks[i])
+    if (type === 1) {
+      tasks.sort((a, b) => {
+        var at = a.title
+        var bt = b.title
+        return at > bt ? 1 : (at < bt ? -1 : 0)
+      })
+    } else if (type === 2) {
+      tasks.sort((a, b) => {
+        var at = a.status[0]
+        var bt = b.status[0]
+        return at > bt ? 1 : (at < bt ? -1 : 0)
+      })
+    } else if (type === 3) {
+      tasks.sort((a, b) => {
+        var at = a.endState
+        var bt = b.endState
+        return at > bt ? 1 : (at < bt ? -1 : 0)
+      })
+    }
+    this.setState({ tasks })
+  }
+
   isModal () {
     if (this.state.modalOpen === true) {
       return (
@@ -121,6 +146,7 @@ class UserTasks extends Component {
           tasks={this.state.tasks}
           changeStateModal={this.changeStateModal}
           askDeleteTask={this.askDeleteTask}
+          modifyOrder={this.modifyOrder}
         />
         {this.isModal()}
       </div>
