@@ -67,9 +67,6 @@ class Stats extends Component {
         } else if (this.state.tasks[i].status[0] === 'pending') {
           pendingTasks += 1
         }
-        this.setState({tasksCompleted})
-        this.setState({onGoingTasks})
-        this.setState({pendingTasks})
       }
 
       const pieChart = [
@@ -88,6 +85,9 @@ class Stats extends Component {
       ]
 
       this.setState({ pieChart })
+      this.setState({tasksCompleted})
+      this.setState({onGoingTasks})
+      this.setState({pendingTasks})
     })
   }
 
@@ -102,11 +102,11 @@ class Stats extends Component {
           <div className='col-6' style={{ width: '90%' }}>
             <div className=' mx-auto' style={{ width: '80%', height: '100%', display: 'grid', verticalAlign: 'middle', marginTop: '5%' }}>
               <label htmlFor='completed'>Percentage of tasks completed</label>
-              <ProgressBar id='completed' style={{ marginTop: '-8%' }} animated striped variant='success' now={(this.state.tasksCompleted / this.state.tasks.length) * 100} key={1} label={(this.state.tasksCompleted / this.state.tasks.length) * 100 +'%'} /> 
+              <ProgressBar id='completed' style={{ marginTop: '-8%' }} animated striped variant='success' now={parseInt((this.state.tasksCompleted / this.state.tasks.length) * 100)} key={1} label={parseInt((this.state.tasksCompleted / this.state.tasks.length) * 100) +'%'} /> 
               <label htmlFor='ongoing'>Percentage of on going tasks</label>
-              <ProgressBar id='ongoing' style={{ marginTop: '-8%' }}animated striped variant='warning' now={(this.state.onGoingTasks / this.state.tasks.length) * 100} key={1} label={(this.state.onGoingTasks / this.state.tasks.length) * 100 +'%'}  />
+              <ProgressBar id='ongoing' style={{ marginTop: '-8%' }}animated striped variant='warning' now={(this.state.onGoingTasks / this.state.tasks.length) * 100} key={1} label={parseInt((this.state.onGoingTasks / this.state.tasks.length) * 100) +'%'}  />
               <label htmlFor='pending'>Percentage of pending tasks</label>
-              <ProgressBar id='pending' style={{ marginTop: '-8%' }} animated variant='danger' now={(this.state.pendingTasks / this.state.tasks.length) * 100} key={1} label={(this.state.pendingTasks / this.state.tasks.length) * 100 +'%'}  />
+              <ProgressBar id='pending' style={{ marginTop: '-8%' }} animated variant='danger' now={(this.state.pendingTasks / this.state.tasks.length) * 100} key={1} label={parseInt((this.state.pendingTasks / this.state.tasks.length) * 100) +'%'}  />
             </div>
           </div>
           <div className='col-6'>
