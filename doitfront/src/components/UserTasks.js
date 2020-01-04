@@ -46,6 +46,7 @@ class UserTasks extends Component {
     })
       .then(async () => {
         await this.componentDidMount()
+        this.props.refresh()
       })
   }
 
@@ -82,6 +83,7 @@ class UserTasks extends Component {
     }).then(async () => {
       this.changeStateModal()
       await this.componentDidMount()
+      this.props.refresh()
     }
     )
   }
