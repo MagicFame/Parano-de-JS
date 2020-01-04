@@ -52,7 +52,7 @@ class Stats extends Component {
       let tasksCompleted = 0
       let onGoingTasks = 0
       let pendingTasks = 0
-      for (let i = 0; i < this.state.tasks.length; i++){
+      for (let i = 0; i < this.state.tasks.length; i++) {
         if (this.state.tasks[i].relevance === 'High') {
           highRelevanceNumb += 1
         } else if (this.state.tasks[i].relevance === 'Medium') {
@@ -64,7 +64,7 @@ class Stats extends Component {
           tasksCompleted += 1
         } else if (this.state.tasks[i].status[0] === 'On Going') {
           onGoingTasks += 1
-        } else if (this.state.tasks[i].status[0] === 'pending') {
+        } else if (this.state.tasks[i].status[0] === 'Pending') {
           pendingTasks += 1
         }
       }
@@ -85,52 +85,52 @@ class Stats extends Component {
       ]
 
       this.setState({ pieChart })
-      this.setState({tasksCompleted})
-      this.setState({onGoingTasks})
-      this.setState({pendingTasks})
+      this.setState({ tasksCompleted })
+      this.setState({ onGoingTasks })
+      this.setState({ pendingTasks })
     })
   }
 
- render () {
-  return (
-    <div style={{ width: '90%', marginLeft: '10%' }}>
-      <div align='center' className='card bg-dark text-white mx-auto' style={{ width: '85%', marginTop: '5%' }}>
-        <div className='card-header'>
-          <h1>Overview</h1>
-        </div>
-        <div className='row'>
-          <div className='col-6' style={{ width: '90%' }}>
-            <div className=' mx-auto' style={{ width: '80%', height: '100%', display: 'grid', verticalAlign: 'middle', marginTop: '5%' }}>
-              <label htmlFor='completed'>Percentage of tasks completed</label>
-              <ProgressBar id='completed' style={{ marginTop: '-8%' }} animated striped variant='success' now={parseInt((this.state.tasksCompleted / this.state.tasks.length) * 100)} key={1} label={parseInt((this.state.tasksCompleted / this.state.tasks.length) * 100) +'%'} /> 
-              <label htmlFor='ongoing'>Percentage of on going tasks</label>
-              <ProgressBar id='ongoing' style={{ marginTop: '-8%' }}animated striped variant='warning' now={(this.state.onGoingTasks / this.state.tasks.length) * 100} key={1} label={parseInt((this.state.onGoingTasks / this.state.tasks.length) * 100) +'%'}  />
-              <label htmlFor='pending'>Percentage of pending tasks</label>
-              <ProgressBar id='pending' style={{ marginTop: '-8%' }} animated variant='danger' now={(this.state.pendingTasks / this.state.tasks.length) * 100} key={1} label={parseInt((this.state.pendingTasks / this.state.tasks.length) * 100) +'%'}  />
-            </div>
+  render () {
+    return (
+      <div style={{ width: '90%', marginLeft: '10%' }}>
+        <div align='center' className='card bg-dark text-white mx-auto' style={{ width: '85%', marginTop: '5%' }}>
+          <div className='card-header'>
+            <h1>Overview</h1>
           </div>
-          <div className='col-6'>
-            <PieChart width={450} height={400} label>
-              <Pie
-                data={this.state.pieChart}
-                cx='50%'
-                cy='50%'
-                outerRadius='50%'
-                labelLine={false}
-                label={this.renderLabel}
-                dataKey='value'
-                isAnimationActive={false}
-              >
-                {this.state.pieChart.map((entry, index) => (
-                  <Cell fill={this.state.COLORS[index]} key={`cell-${index}`} />
-                ))}
-              </Pie>
-            </PieChart>
+          <div className='row'>
+            <div className='col-6' style={{ width: '90%' }}>
+              <div className=' mx-auto' style={{ width: '80%', height: '100%', display: 'grid', verticalAlign: 'middle', marginTop: '5%' }}>
+                <label htmlFor='completed'>Percentage of tasks completed</label>
+                <ProgressBar id='completed' style={{ marginTop: '-8%' }} animated striped variant='success' now={parseInt((this.state.tasksCompleted / this.state.tasks.length) * 100)} key={1} label={parseInt((this.state.tasksCompleted / this.state.tasks.length) * 100) +'%'} /> 
+                <label htmlFor='ongoing'>Percentage of on going tasks</label>
+                <ProgressBar id='ongoing' style={{ marginTop: '-8%' }}animated striped variant='warning' now={(this.state.onGoingTasks / this.state.tasks.length) * 100} key={1} label={parseInt((this.state.onGoingTasks / this.state.tasks.length) * 100) +'%'}  />
+                <label htmlFor='pending'>Percentage of pending tasks</label>
+                <ProgressBar id='pending' style={{ marginTop: '-8%' }} animated variant='danger' now={(this.state.pendingTasks / this.state.tasks.length) * 100} key={1} label={parseInt((this.state.pendingTasks / this.state.tasks.length) * 100) +'%'}  />
+              </div>
+            </div>
+            <div className='col-6'>
+              <PieChart width={450} height={400} label>
+                <Pie
+                  data={this.state.pieChart}
+                  cx='50%'
+                  cy='50%'
+                  outerRadius='50%'
+                  labelLine={false}
+                  label={this.renderLabel}
+                  dataKey='value'
+                  isAnimationActive={false}
+                >
+                  {this.state.pieChart.map((entry, index) => (
+                    <Cell fill={this.state.COLORS[index]} key={`cell-${index}`} />
+                  ))}
+                </Pie>
+              </PieChart>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  )
+    )
   }
 }
 
