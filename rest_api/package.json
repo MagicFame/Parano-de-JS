@@ -4,8 +4,8 @@
   "description": "Project created for the course of Node JS at EFREI PARIS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "test": "jest",
+    "start": "nodemon index.js"
   },
   "keywords": [
     "RESTFull"
@@ -13,7 +13,9 @@
   "author": "Jeremie",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -21,5 +23,11 @@
     "express": "^4.17.1",
     "mongoose": "^5.7.11",
     "jsonwebtoken": "8.5.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
