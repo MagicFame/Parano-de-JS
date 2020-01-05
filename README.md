@@ -5,6 +5,11 @@ Groupe composé de Jérémie UZAN, Léo MERRAN, Louis FONTAINE et Morgan WOLF
 
 ## Installation
 1. Télécharger et installer [MongoDB](https://www.mongodb.com/fr)
+2. Lancer MongoDB
+3. Télécharger le projet "Parano-de-JS" et décompresser l'archive
+4. Ouvrir une première console et naviguer dans "/Parano-de-JS/rest_api" et éxécuter la commande "npm install" puis "npm start"
+5. Ouvrir une seconde console et naviguer dans "/Parano-de-JS/doitfront" et éxécuter la commande "npm install" puis "npm start"
+6. Votre projet se lance
 
 ## Synopsis projet
 
