@@ -4,12 +4,12 @@ Projet de Master 2 à EFREI Paris pour la matière NodeJS
 Groupe composé de Jérémie UZAN, Léo MERRAN, Louis FONTAINE et Morgan WOLF
 
 ## Installation
-1. Télécharger et installer [MongoDB](https://www.mongodb.com/fr)
-2. Lancer MongoDB
-3. Télécharger le projet "Parano-de-JS" et décompresser l'archive
-4. Ouvrir une première console et naviguer dans "/Parano-de-JS/rest_api" et éxécuter la commande "npm install" puis "npm start"
-5. Ouvrir une seconde console et naviguer dans "/Parano-de-JS/doitfront" et éxécuter la commande "npm install" puis "npm start"
-6. Votre projet se lance
+1. Télécharger et installer un serveur [MongoDB](https://www.mongodb.com/fr) - MondoDB Community Server
+2. Lancer MongoDB (service)
+3. Cloner le projet "Parano-de-JS"
+4. Ouvrir un terminal et naviguer dans "/Parano-de-JS/rest_api" puis exécuter la commande "npm install" et "npm start"
+5. Ouvrir un second terminal et naviguer dans "/Parano-de-JS/doitfront" et exécuter la commande "npm install" puis "npm start"
+6. Le projet est lancé.
 
 ## Synopsis projet
 
