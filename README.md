@@ -3,6 +3,9 @@
 Projet de Master 2 à EFREI Paris pour la matière NodeJS  
 Groupe composé de Jérémie UZAN, Léo MERRAN, Louis FONTAINE et Morgan WOLF
 
+## Installation
+1. Télécharger et installer [MongoDB](https://www.mongodb.com/fr)
+
 ## Synopsis projet
 
 Le projet consiste en la réalisation d'un site internet. Ce site permet d'offrir un gestionnaire de tâches pour n'importe quel utilisateur. Cela permet d'avoir une interface simple avec la possibilité de gérer des délais, des degrés d'importance.
